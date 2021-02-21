@@ -29,7 +29,7 @@
         <span v-if="show.icon" @click="toggle" class="material-icons">
           search
         </span>
-        <div v-if="show.searchbar" class="">
+        <div v-if="show.searchbar">
           <input v-model="input"
             class="ml-2 p-1 w-80 placeholder-gray-500 placeholder-opacity-50 focus:outline-none text-black rounded-sm"
             type="text" placeholder="Please enter text for searching photos">
@@ -42,15 +42,16 @@
       </div>
 
       <!-- selectImage-->
-      <div v-if="select_image" class="flex-row flex" id="image-box">
-        <div v-for="(photo, index) in searchSelectPhoto" class="ml-96">
-          <img :src="photo.src" id="imgshow">
+      <div v-if="select_image" class="w-full h-full bg-black">
+        <div v-for="(photo, index) in searchSelectPhoto" class="ml-96 flex flex-row">
+          <img :src="photo.src" class="w-1/5 h-4/5 ml-52">
+          <button><span @click="closePhoto" v-if="select_image == true" class="material-icons bg-white ml-2 mb-96">
+            close
+          </span></button>
         </div>
-      </div>
-      <button><span @click="closePhoto" v-if="select_image == true" class="material-icons ml-20 bg-white close-icon">
-          close
-        </span></button>
 
+        
+      </div>
       <div class="m-5">
         <ul v-if="searchphotos.length !== 0" class="grid grid-cols-2 gap-y-10 ml-10 lg:grid-cols-5">
           <li v-for="(photo, index) in searchphotos">
